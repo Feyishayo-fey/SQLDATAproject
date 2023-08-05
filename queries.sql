@@ -64,7 +64,7 @@ SELECT AVG(weight_kg)
 FROM animals;
 
 /*QUERY TO FIND WHICH ANIMALS ESCAOE THE MOST: NEUTERED OR NON NEUTERED*/
-SELECT COUNT(escape_attempts), neutred
+SELECT COUNT(escape_attempts), neutered
 FROM animals
 GROUP BY neutered;
 

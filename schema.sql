@@ -14,4 +14,7 @@ CREATE TABLE animals (
     weight_kg DECIMAL,
 );
 
+/*ADDING NEW COLUMN SPECIES*/
 
+ALTER TABLE animals
+ADD species VARCHAR;

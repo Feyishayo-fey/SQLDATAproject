@@ -50,6 +50,48 @@ FROM animals
 WHERE weight_kg >= 10.4 AND 
 weight_kg <= 17.3
 ;
+
+/*TRANSACTION UPDATE AND ROLLBACK OF SPECIE COLUMN*/
+begin transaction
+UPDATE animals 
+SET species ='u'
+ROLLBACK;
+SELECT * 
+FROM animals;
+/*TRANSACTION UPDATE OF SPECIE COLUMN*/
+
+BEGIN TRANSACTION
+UPDATE animals
+SET species = 'D'
+WHERE name LIKE '%mon';
+
+SELECT * FROM animals;
+/*TRANSACTION UPDATE OF SPECIE COLUMN*/
+
+begin transaction
+UPDATE animals 
+SET species = 'P'
+WHERE species IS NULL;
+COMMIT;
+
+SELECT * FROM animals;
+/*TRANSACTION DELETE AND ROLLBACK OF ANIMALS TABLE*/
+BEGIN TRANSACTION;
+DELETE FROM animals;
+ROLLBACK;
+SELECT * FROM animals;
+
+/*TRANSACTION DELETE OF ANIMALS TABLE UNDER CERTAIN CONDITION*/
+BEGIN TRANSACTION;
+DELETE FROM animals
+WHERE date_of_birth > '2022-01-01'
+SAVE TRANSACTION savepoint;
+
+UPDATE animals
+SET weight_kg =(weight_kg * -1);
+ROLLBACK ;
+SELECT * FROM animals;
+
 /*QUERY TO COUNT ALL ANIMALS */
 SELECT COUNT(*)
 FROM animals;
